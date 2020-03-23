@@ -4,7 +4,7 @@ public class Bullet implements Entity{
     private int y;
     private int speed;
     private char symbol;
-    private boolean active;
+    private boolean dead;
 
     public Bullet(int x, int y){
         this.x = x;
@@ -12,7 +12,7 @@ public class Bullet implements Entity{
         this.speed = 1;
         this.symbol = '-';
         this.jml ++;
-        this.active = True;
+        this.dead = false;
     }
 
     public char getSymbol(){
@@ -33,14 +33,17 @@ public class Bullet implements Entity{
 
     public void move(){
         this.y += 1;
+        if (this.y>4){
+            shot();
+        }
     }
 
     public void shot(){
-        this.active = False;
+        this.dead = true;
     }
 
-    public boolean isShot(){
-        return active;
+    public boolean isDead(){
+        return dead;
     }
 
 }

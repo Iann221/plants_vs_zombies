@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lawn { //[row][column]
-    private char[][] petak = new char[3][2];
+    private char[][] petak = new char[3][5];
 
     public Lawn(){
         petak = new char[][]{
-        {'p',' '},
-        {' ',' '},
-        {' ',' '}
+        {'p',' ',' ',' ',' '},
+        {' ',' ',' ',' ',' '},
+        {' ',' ',' ',' ',' '}
         };
         //petak = new char[3][2]
     }
@@ -24,7 +24,7 @@ public class Lawn { //[row][column]
 
     public void reset(){
         for (int i=0;i<3;i++){//row
-            for (int j=0;j<2;j++){//column 
+            for (int j=0;j<5;j++){//column 
                 petak[i][j] = ' ';
             }
         }
@@ -45,8 +45,8 @@ public class Lawn { //[row][column]
     public <T extends Entity> void set(List<T> entity){
         for (T temp: entity){
             for (int i=0;i<3;i++){//row
-                for (int j=0;j<2;j++){//column 
-                    if((temp.getX()==i)&&(temp.getY()==j)){
+                for (int j=0;j<5;j++){//column 
+                    if((temp.getX()==i)&&(temp.getY()==j)&&(!(temp.isDead()))){
                         petak[i][j] = temp.getSymbol();
                     } 
                 }
@@ -80,7 +80,7 @@ public class Lawn { //[row][column]
 
     public void cetak(){
         for (int i=0;i<3;i++){//row
-            for (int j=0;j<2;j++){//column
+            for (int j=0;j<5;j++){//column
                 System.out.print(petak[i][j]);
             }
             System.out.println();
@@ -91,7 +91,7 @@ public class Lawn { //[row][column]
     public void cekKena(List<Bullet> bullets, List<Zombie> zombies){
         for (Bullet b : bullets){
             for (Zombie z : zombies){
-                if ((z.getY()==b.getY())&&(!(b.isShot()))){
+                if ((z.getY()==b.getY())&&(!(b.isDead()))&&(!(z.isDead()))){
                     z.hurt();
                     b.shot();
                 }

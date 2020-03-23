@@ -4,9 +4,13 @@ public abstract class Zombie implements Entity {
     protected int y;
     protected int health; // the times it needs to be hit to die
     protected int speed;
-    protected String name;
+    protected char name;
     protected boolean moving;
     
+    //constructor
+    public Zombie(int x, int y, int health, int speed){
+        this.x = x;
+    }
     // getter & setter
     public int getX() {
         return x;
