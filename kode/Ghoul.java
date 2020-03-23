@@ -1,4 +1,4 @@
-public class Ghoul extends Zombies {
+public class Ghoul extends Zombie {
     // added attributes
 
     // constructor

@@ -1,4 +1,4 @@
-public class RegularZombie extends Zombies {
+public class RegularZombie extends Zombie {
     // added attributes
 
     // constructor

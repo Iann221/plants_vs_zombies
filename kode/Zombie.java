@@ -17,7 +17,7 @@ public abstract class Zombie {
     public int getHealth() {
         return health;
     }
-    public int getName() {
+    public String getName() {
         return name;
     }
     public int getSpeed() {
