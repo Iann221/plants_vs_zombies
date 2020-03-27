@@ -1,4 +1,4 @@
-public class Zombie implements Entity {
+public abstract class Zombie implements Entity {
     // attributes
     protected int x;
     protected int y;
@@ -6,14 +6,15 @@ public class Zombie implements Entity {
     protected int speed;
     protected char name;
     protected boolean moving;
+    protected int turn = 0;
     
     //constructor
-    public Zombie(int x, int y, int health, int speed){
+    public Zombie(int x, int y){
         this.x = x;
         this.y = y;
-        this.health = health;
-        this.speed = speed;
-        this.name = 'Z';
+        // this.health = health;
+        // this.speed = speed;
+        // this.name = 'Z';
     }
     // getter & setter
     public int getX() {
@@ -47,6 +48,7 @@ public class Zombie implements Entity {
         return this.moving;
     }
 
+    public abstract void move();
     // move zombie from right of screen to the left according to its speed
     // public void move(int speed) {
     //     this.x -= speed; // moves at the 

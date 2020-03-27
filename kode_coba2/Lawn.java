@@ -91,7 +91,7 @@ public class Lawn { //[row][column]
     public void cekKena(List<Bullet> bullets, List<Zombie> zombies){
         for (Bullet b : bullets){
             for (Zombie z : zombies){
-                if ((z.getY()==b.getY())&&(!(b.isDead()))&&(!(z.isDead()))){
+                if ((z.getY()<=b.getY())&&(z.getX()==b.getX())&&(!(b.isDead()))&&(!(z.isDead()))){
                     z.hurt();
                     b.shot();
                 }

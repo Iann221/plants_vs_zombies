@@ -15,13 +15,15 @@ public class Main {
         Bullet b1 = new Bullet(1,0);
         Bullet b2 = new Bullet(1,1);
         Bullet b3 = new Bullet(1,3);
-        Zombie z1 = new Zombie(1,4,2,1);
+        Zombie z1 = new RegularZombie(1,4);
+        Zombie z2 = new Ghoul(0,4);
         //String b1 = "abc";
 
         bulletlist.add(b1);
         bulletlist.add(b2);
         bulletlist.add(b3);
         zombielist.add(z1);
+        zombielist.add(z2);
         //     charlist.add("a");
         //     charlist.add("b");
         Lawn lawn1 = new Lawn();
@@ -36,6 +38,9 @@ public class Main {
             // bulletlist[0].move();
             for (Bullet b: bulletlist){
                 b.move();
+            }
+            for (Zombie z: zombielist){
+                z.move();
             }
             lawn1.cekKena(bulletlist,zombielist);
             lawn1.reset();

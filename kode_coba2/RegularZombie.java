@@ -1,22 +1,19 @@
-public class Ghoul extends Zombie {
+public class RegularZombie extends Zombie {
     // added attributes
 
     // constructor
     
-    public Ghoul(int x, int y) {
+    public RegularZombie(int x, int y) {
         super(x,y);
-        this.name = 'G';
+        this.name = 'Z';
         // this.x = maximum position on the right
         // this.x = maximum position on the right
         this.moving = false;
-        this.speed = 2;
-        this.health = 10;
+        this.speed = 1;
+        this.health = 5;
     }
 
     public void move(){
-        turn ++;
-        if (turn % 2 == 0){
-            this.x --;
-        }
+        this.y --;
     }
 }
