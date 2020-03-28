@@ -98,4 +98,17 @@ public class Lawn { //[row][column]
             }
         }
     }
+
+    public void cekTingkahZombie(List<Plant> plants, List<Zombie> zombies){
+        for (Plant p : plants){
+            for (Zombie z : zombies){
+                if ((z.getY()==(p.getY()+1))&&(z.getX()==p.getX())&&(!(p.isDead()))&&(!(z.isDead()))){
+                    System.out.println("eating");
+                    z.makan(p);
+                } else {
+                    z.move();
+                }
+            }
+        }
+    }
 }

@@ -6,12 +6,13 @@ public abstract class Zombie implements Entity {
     protected int speed;
     protected char name;
     protected boolean moving;
-    protected int turn = 0;
+    protected int turn;
     
     //constructor
     public Zombie(int x, int y){
         this.x = x;
         this.y = y;
+        this.turn = 0;
         // this.health = health;
         // this.speed = speed;
         // this.name = 'Z';
@@ -53,6 +54,8 @@ public abstract class Zombie implements Entity {
     // public void move(int speed) {
     //     this.x -= speed; // moves at the 
     // }
-
+    public void makan(Plant p){
+        p.eaten();
+    }
 
 }
