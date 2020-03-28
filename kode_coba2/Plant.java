@@ -1,4 +1,4 @@
-public class Plant implements Entity{
+public abstract class Plant implements Entity{
     // attributes
     protected int x;
     protected int y;
@@ -8,13 +8,10 @@ public class Plant implements Entity{
     protected int turn;
 
     // constructor
-    public Plant(int x, int y, int health, int speed){
+    public Plant(int x, int y){
         this.x = x;
         this.y = y;
         this.turn = 0;
-        this.health = health;
-        this.speed = speed;
-        this.name = 'P';
     }
 
     // method
@@ -28,29 +25,19 @@ public class Plant implements Entity{
         return y;
     }
     public boolean isDead(){
-        return this.health == 0;
+        return this.health <= 0;
     }
     public int getHealth() {
         return health;
     }
-    public void eaten(){
-        this.health --;
+    public void eaten(int damage){
+        this.health -= damage;
     }
     public int getSpeed() {
         return speed;
     }
 
-    public Bullet shoot(){
-        turn ++;
-        Bullet b;
-        if (turn % 2 == 0){
-            b = new Bullet(this.x,this.y+1);
-            return b;
-        } else {
-            b = new Bullet(-1,-1);
-            return b;
-        }
-    }
+    public abstract Bullet shoot();
 
     
 }

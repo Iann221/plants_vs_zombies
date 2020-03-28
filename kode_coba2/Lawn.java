@@ -2,13 +2,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lawn { //[row][column]
-    private char[][] petak = new char[3][5];
+    private int row = 6;
+    private int column = 13;
+    private char[][] petak = new char[row][column];
 
     public Lawn(){
         petak = new char[][]{
-        {'p',' ',' ',' ',' '},
-        {' ',' ',' ',' ',' '},
-        {' ',' ',' ',' ',' '}
+        {'*',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '}, //row 0 tidak dipakai   
+        {'R',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+        {'U',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+        {'M',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+        {'A',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+        {'H',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '}
         };
         //petak = new char[3][2]
     }
@@ -23,8 +28,8 @@ public class Lawn { //[row][column]
     // }
 
     public void reset(){
-        for (int i=0;i<3;i++){//row
-            for (int j=0;j<5;j++){//column 
+        for (int i=1;i<row;i++){//row
+            for (int j=1;j<column;j++){//column 
                 petak[i][j] = ' ';
             }
         }
@@ -44,8 +49,8 @@ public class Lawn { //[row][column]
 
     public <T extends Entity> void set(List<T> entity){
         for (T temp: entity){
-            for (int i=0;i<3;i++){//row
-                for (int j=0;j<5;j++){//column 
+            for (int i=1;i<row;i++){//row
+                for (int j=1;j<column;j++){//column 
                     if((temp.getX()==i)&&(temp.getY()==j)&&(!(temp.isDead()))){
                         petak[i][j] = temp.getSymbol();
                     } 
@@ -79,20 +84,23 @@ public class Lawn { //[row][column]
     // }
 
     public void cetak(){
-        for (int i=0;i<3;i++){//row
-            for (int j=0;j<5;j++){//column
+        for (int i=1;i<row;i++){//row
+            System.out.println("**************************");
+            for (int j=0;j<column;j++){//column
                 System.out.print(petak[i][j]);
+                System.out.print(' ');
             }
             System.out.println();
         }
+        System.out.println("**************************");
     }
 
     // cek kena zombie
     public void cekKena(List<Bullet> bullets, List<Zombie> zombies){
         for (Bullet b : bullets){
-            for (Zombie z : zombies){
+            for (Zombie z : zombies){ //asumsi ga ada plant di kanan zombie
                 if ((z.getY()<=b.getY())&&(z.getX()==b.getX())&&(!(b.isDead()))&&(!(z.isDead()))){
-                    z.hurt();
+                    z.hurt(b);
                     b.shot();
                 }
             }
@@ -103,12 +111,38 @@ public class Lawn { //[row][column]
         for (Plant p : plants){
             for (Zombie z : zombies){
                 if ((z.getY()==(p.getY()+1))&&(z.getX()==p.getX())&&(!(p.isDead()))&&(!(z.isDead()))){
-                    System.out.println("eating");
                     z.makan(p);
-                } else {
-                    z.move();
-                }
+                    z.ate();
+                } 
             }
+
+        }
+        for (Zombie z : zombies){
+            if(z.isMoving()){
+                z.move();
+            }
+            z.moving();
+        }
+    }
+
+    public boolean cekMenang(List<Zombie> zombies){
+        boolean plantmenang = true;
+        boolean zombiemenang = false;
+        for (Zombie z : zombies){
+            if (z.getY()==0){
+                zombiemenang = true;
+            } else if (!z.isDead()){
+                plantmenang = false;
+            }
+        }
+        if (plantmenang){
+            System.out.println("Selamat anda berhasil menahan para zombie");
+            return true;
+        } else if (zombiemenang){
+            System.out.println("Zombie sudah masuk rumah");
+            return true;
+        } else {
+            return false;
         }
     }
 }

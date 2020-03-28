@@ -8,14 +8,14 @@ public class Ghoul extends Zombie {
         this.name = 'G';
         // this.x = maximum position on the right
         // this.x = maximum position on the right
-        this.moving = false;
         this.speed = 2;
         this.health = 10;
+        this.damage = 4;
     }
 
     public void move(){
         turn ++;
-        if (turn % 2 == 0){
+        if (turn % speed == 0){
             this.y --;
         }
     }

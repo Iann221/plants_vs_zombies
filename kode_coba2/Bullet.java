@@ -1,18 +1,20 @@
 public class Bullet implements Entity{
-    private static int jml = -1;
-    private int x;
-    private int y;
-    private int speed;
-    private char symbol;
-    private boolean dead;
+    protected static int jml = -1;
+    protected int x;
+    protected int y;
+    protected int speed;
+    protected char symbol;
+    protected boolean dead;
+    protected int damage;
 
-    public Bullet(int x, int y){
+    public Bullet(int x, int y, int damage){
         this.x = x;
         this.y = y;
         this.speed = 1;
         this.symbol = '-';
         this.jml ++;
         this.dead = false;
+        this.damage = damage;
     }
 
     public char getSymbol(){
@@ -31,9 +33,13 @@ public class Bullet implements Entity{
         return this.jml;
     }
 
+    public int getDamage(){
+        return this.damage;
+    }
+
     public void move(){
         this.y += 1;
-        if (this.y>4){
+        if (this.y>12){
             shot();
         }
     }

@@ -5,14 +5,16 @@ public abstract class Zombie implements Entity {
     protected int health; // the times it needs to be hit to die
     protected int speed;
     protected char name;
-    protected boolean moving;
+    protected boolean isMoving;
     protected int turn;
+    protected int damage;
     
     //constructor
     public Zombie(int x, int y){
         this.x = x;
         this.y = y;
         this.turn = 0;
+        this.isMoving = true;
         // this.health = health;
         // this.speed = speed;
         // this.name = 'Z';
@@ -33,8 +35,8 @@ public abstract class Zombie implements Entity {
     public int getSpeed() {
         return speed;
     }
-    public void hurt(){
-        this.health --;
+    public void hurt(Bullet b){
+        this.health = this.health - b.getDamage();
     }
 
     // abstract method
@@ -42,20 +44,25 @@ public abstract class Zombie implements Entity {
 
     //method
     public boolean isDead() {
-        return (this.health == 0);
+        return (this.health <= 0);
     }
 
     public boolean isMoving() {
-        return this.moving;
+        return this.isMoving;
+    }
+
+    public void ate(){
+        isMoving = false;
+    }
+
+    public void moving(){
+        isMoving = true;
     }
 
     public abstract void move();
-    // move zombie from right of screen to the left according to its speed
-    // public void move(int speed) {
-    //     this.x -= speed; // moves at the 
-    // }
+   
     public void makan(Plant p){
-        p.eaten();
+        p.eaten(damage);
     }
 
 }
