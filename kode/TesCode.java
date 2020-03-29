@@ -9,6 +9,13 @@ public class TesCode {
     //         System.out.println("ha");
     //     }
     // }
+    public void wait(){
+        try{
+            Thread.sleep(500);
+        } catch (Exception e) {
+
+        }
+    } // method untuk delay
      public static void main(String[] args) { 
   //      LinkedList<Bullet> listOfBullets = new LinkedList<Bullet>();
   //      for (int i=1;i<5;i++){
@@ -29,19 +36,20 @@ public class TesCode {
   //       listOfBullets.remove(null);   
   //       System.out.println(listOfBullets);
   //  }
-  for (int i = 0; i < 10; i++) {
-			System.out.println(getRandomNumberInRange(1, 5));
-		}
+//   for (int i = 0; i < 10; i++) {
+// 			System.out.println(getRandomNumberInRange(1, 5));
+// 		}
 
-	}
+// 	}
 
-	private static int getRandomNumberInRange(int min, int max) {
+// 	private static int getRandomNumberInRange(int min, int max) {
 
-		if (min >= max) {
-			throw new IllegalArgumentException("max must be greater than min");
-		}
+// 		if (min >= max) {
+// 			throw new IllegalArgumentException("max must be greater than min");
+// 		}
 
-		Random r2 = new Random();
-		return r2.nextInt((max - min) + 1) + min;
-	}
+// 		Random r2 = new Random();
+// 		return r2.nextInt((max - min) + 1) + min;
+// 	}
+    }
 }

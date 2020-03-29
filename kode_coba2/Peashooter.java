@@ -4,8 +4,6 @@ public class Peashooter extends Plant{
     public Peashooter(int x, int y){
         super(x,y);
         this.name = 'P';
-        //this.x = ;
-        //this.y = ;
         this.speed = 2;
         this.health = 5;
     }

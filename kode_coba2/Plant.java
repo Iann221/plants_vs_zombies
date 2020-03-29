@@ -3,7 +3,7 @@ public abstract class Plant implements Entity{
     protected int x;
     protected int y;
     protected int health;
-    protected int speed;
+    protected int speed; //kecepatan nembak, makin tinggi makin lambat
     protected char name;
     protected int turn;
 

@@ -15,19 +15,9 @@ public class Lawn { //[row][column]
         {'A',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
         {'H',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '}
         };
-        //petak = new char[3][2]
     }
-    // public void set(Bullet[] entity){
-    //     for (int i=0;i<3;i++){//row
-    //         for (int j=0;j<2;j++){//column 
-    //             if((entity[0].getX()==i)&&(entity[0].getY()==j)){
-    //                 petak[i][j] = entity[0].getSymbol();
-    //             } 
-    //         }
-    //     }      
-    // }
 
-    public void reset(){
+    public void reset(){ // mengembalikan tampilan lawn menjadi semula agar nantinya bisa dicetak lagi dari awal
         for (int i=1;i<row;i++){//row
             for (int j=1;j<column;j++){//column 
                 petak[i][j] = ' ';
@@ -35,19 +25,7 @@ public class Lawn { //[row][column]
         }
     }
 
-    // coba2 set
-
-    // public static <T> void set(T[] entity){
-    //     petak[1][0] = entity[0].getSymbol();      
-    // }
-
-    // public <T extends Entity> void set(List<T> entity){
-    //     T temp = entity.get(0);
-    //     petak[1][0] = temp.getSymbol();    
-          
-    // } //bisa cuk
-
-    public <T extends Entity> void set(List<T> entity){
+    public <T extends Entity> void set(List<T> entity){ // menerima list generic untuk menentukan posisi di lawn
         for (T temp: entity){
             for (int i=1;i<row;i++){//row
                 for (int j=1;j<column;j++){//column 
@@ -59,31 +37,17 @@ public class Lawn { //[row][column]
         }   
     }
 
-    // public void set(List<Bullet> entity){
-    //     Bullet temp = entity.get(0);
-    //     petak[1][0] = temp.getSymbol();      
-    // } //compile sukses
+    public <T extends Entity> boolean cekAda(List<T> entities, T entity){ // mengecek jika suatu entitas sudah ada di posisi yang sama di lawn
+        boolean retval = false;
+        for (T temp: entities){
+            if ((entity.getX()==temp.getX())&&(entity.getY()==temp.getY())){
+                retval = true;
+            }  
+        }
+        return retval;   
+    }
 
-    // public <T extends String> void set(List<T> entity){
-    //     T temp = entity.get(0);
-    //     System.out.println(temp.length());      
-    // } //bisaaaa
-
-    // public void set(List<String> entity){
-    //     String temp = entity.get(0);
-    //     System.out.println(temp.length());      
-    // } //compile sukses
-
-    // coba2 print
-    //char[][] petak = new char[5][4]
-    //for (int i=0;i<5;i++){
-
-    //}
-    // public Lawn(){
-        
-    // }
-
-    public void cetak(){
+    public void cetak(){ //mencetak tampilan lawn
         for (int i=1;i<row;i++){//row
             System.out.println("**************************");
             for (int j=0;j<column;j++){//column
@@ -95,7 +59,7 @@ public class Lawn { //[row][column]
         System.out.println("**************************");
     }
 
-    // cek kena zombie
+    // mengecek apakah zombie terkena peluru, jika ya, nyawa zombie berkurang dan peluru tidak aktif
     public void cekKena(List<Bullet> bullets, List<Zombie> zombies){
         for (Bullet b : bullets){
             for (Zombie z : zombies){ //asumsi ga ada plant di kanan zombie
@@ -107,6 +71,7 @@ public class Lawn { //[row][column]
         }
     }
 
+    // mengecek apa yang harus dilakukan zombie. jika di depan ada plant, akan makan, jika tidak ada, akan jalan
     public void cekTingkahZombie(List<Plant> plants, List<Zombie> zombies){
         for (Plant p : plants){
             for (Zombie z : zombies){
@@ -125,6 +90,7 @@ public class Lawn { //[row][column]
         }
     }
 
+    // mengecek kondisi menang(zombie sampai rumah / semua zombie dikalahkan)
     public boolean cekMenang(List<Zombie> zombies){
         boolean plantmenang = true;
         boolean zombiemenang = false;

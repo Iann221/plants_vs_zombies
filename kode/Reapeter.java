@@ -4,6 +4,8 @@ public class Repeater extends Plant{
     public Repeater(int x, int y){
         super(x,y);
         this.name = 'R';
+        //this.x = ;
+        //this.y = ;
         this.speed = 1;
         this.health = 5;
     }

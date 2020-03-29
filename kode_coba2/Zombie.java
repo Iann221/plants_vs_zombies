@@ -3,11 +3,11 @@ public abstract class Zombie implements Entity {
     protected int x;
     protected int y;
     protected int health; // the times it needs to be hit to die
-    protected int speed;
+    protected int speed; //kecepatan jalan, makin tinggi makin lambat
     protected char name;
     protected boolean isMoving;
-    protected int turn;
-    protected int damage;
+    protected int turn; 
+    protected int damage; // damage yang dihasilkan zombie saat makan
     
     //constructor
     public Zombie(int x, int y){
@@ -15,9 +15,6 @@ public abstract class Zombie implements Entity {
         this.y = y;
         this.turn = 0;
         this.isMoving = true;
-        // this.health = health;
-        // this.speed = speed;
-        // this.name = 'Z';
     }
     // getter & setter
     public int getX() {
@@ -35,34 +32,36 @@ public abstract class Zombie implements Entity {
     public int getSpeed() {
         return speed;
     }
-    public void hurt(Bullet b){
-        this.health = this.health - b.getDamage();
+    public void setY(int y){
+        this.y = y;
     }
 
     // abstract method
-    
+    public abstract void move();
 
     //method
     public boolean isDead() {
         return (this.health <= 0);
     }
 
+    public void hurt(Bullet b){
+        this.health = this.health - b.getDamage();
+    }
+
     public boolean isMoving() {
         return this.isMoving;
     }
 
-    public void ate(){
+    public void ate(){ // jika zombie makan, dia tidak akan gerak
         isMoving = false;
     }
 
     public void moving(){
         isMoving = true;
     }
-
-    public abstract void move();
    
-    public void makan(Plant p){
-        p.eaten(damage);
+    public void makan(Plant p){ // makan plant didepannya
+        p.eaten(damage); //nyawa plant berkurang sesuai damage zombie
     }
 
 }
