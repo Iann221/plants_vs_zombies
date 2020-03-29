@@ -6,12 +6,13 @@ public class Repeater extends Plant{
         this.name = 'R';
         this.speed = 1;
         this.health = 5;
+        this.damage = 2;
     }
 
     public Bullet shoot(){
         turn ++;
         Bullet b;
-        b = new Bullet(this.x,this.y+1,2);
+        b = new Bullet(this.x,this.y+1,damage);
         return b;
     }
 }

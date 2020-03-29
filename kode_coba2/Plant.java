@@ -6,6 +6,7 @@ public abstract class Plant implements Entity{
     protected int speed; //kecepatan nembak, makin tinggi makin lambat
     protected char name;
     protected int turn;
+    protected int damage;
 
     // constructor
     public Plant(int x, int y){
