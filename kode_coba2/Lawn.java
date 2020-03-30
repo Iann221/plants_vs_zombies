@@ -91,24 +91,25 @@ public class Lawn { //[row][column]
     }
 
     // mengecek kondisi menang(zombie sampai rumah / semua zombie dikalahkan)
-    public boolean cekMenang(List<Zombie> zombies){
+    public int cekMenang(List<Zombie> zombies){
         boolean plantmenang = true;
         boolean zombiemenang = false;
         for (Zombie z : zombies){
             if (z.getY()==0){
                 zombiemenang = true;
+                plantmenang = false;
             } else if (!z.isDead()){
                 plantmenang = false;
             }
         }
         if (plantmenang){
             System.out.println("Selamat anda berhasil menahan para zombie");
-            return true;
+            return 1;
         } else if (zombiemenang){
             System.out.println("Zombie sudah masuk rumah");
-            return true;
+            return 2;
         } else {
-            return false;
+            return 0;
         }
     }
 }

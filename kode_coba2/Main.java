@@ -25,7 +25,7 @@ public class Main {
 
 	public static void main(String[] args) {
         Main m = new Main();
-        boolean gameend = false;
+        int gameend = 0;
         int sunflower = 500;
         int min = 1;
         int max = 5;
@@ -154,9 +154,28 @@ public class Main {
             // System.out.println(zombielist.get(0).getHealth());
             // System.out.println(plantlist.get(0).getHealth());
             //tunggu();
-        } while ((cmd.equals("SKIP")) && !gameend);
+        } while ((cmd.equals("SKIP")) && (gameend==0));
         // (cmd.equals("SKIP")) && 
         System.out.println("game over");
+        if(gameend==1){
+            System.out.println("Zombie yang mati:");
+            for (Zombie z : zombielist){
+                if(z.isDead()){
+                    Box<Zombie> zombiebox = new Box<Zombie>();
+                    zombiebox.add(z);
+                    zombiebox.print();
+                }
+            }
+        } else {
+            System.out.println("Plant yang mati");
+            for (Plant p : plantlist){
+                if(p.isDead()){
+                    Box<Plant> plantbox = new Box<Plant>();
+                    plantbox.add(p);
+                    plantbox.print();
+                }
+            }
+        }
     }
         
 }
