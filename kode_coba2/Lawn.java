@@ -45,7 +45,6 @@ public class Lawn { //[row][column]
         } else{
             for (T temp: entities){
                 if ((entity.getX()==temp.getX())&&(entity.getY()==temp.getY())){
-                    System.out.println("sudah ada plant di situ");
                     retval = true;
                 }  
             } 

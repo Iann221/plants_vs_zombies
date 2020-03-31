@@ -76,6 +76,7 @@ public class Main {
                     y = s.nextInt();
                     Plant p = new Peashooter(x,y);
                     if(lawn1.cekAda(plantlist,p)){
+                        System.out.println("sudah ada plant di situ");
                         tunggu();
                     } else {
                         plantlist.add(p);
@@ -93,6 +94,7 @@ public class Main {
                     y = s.nextInt();
                     Plant p = new Repeater(x,y);
                     if(lawn1.cekAda(plantlist,p)){ // untuk memastikan tidak ada zombie di tempat sama
+                        System.out.println("sudah ada plant di situ");
                         tunggu();
                     } else {
                         plantlist.add(p);
