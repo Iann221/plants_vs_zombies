@@ -9,7 +9,7 @@ public class Box<T extends Entity> {
         return t;
     }
 
-    public void print(){
+    public void print(){ // mengeprint data dengan tampilan Simbol(row,column)
         System.out.println(t.getSymbol() + "(" + t.getX() + "," + t.getY() + ")");
     }
 }

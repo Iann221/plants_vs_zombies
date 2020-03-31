@@ -70,9 +70,9 @@ public class Main {
              cmd = s.next();
              if (cmd.equals("1")){
                  if(sunflower>=100){
-                    System.out.print("posisi x (1 - 5): ");
+                    System.out.print("posisi row (1 - 5): ");
                     x = s.nextInt();
-                    System.out.print("posisi y (1 - 12): ");
+                    System.out.print("posisi column (1 - 12): ");
                     y = s.nextInt();
                     Plant p = new Peashooter(x,y);
                     if(lawn1.cekAda(plantlist,p)){
@@ -87,9 +87,9 @@ public class Main {
                  }
              } else if (cmd.equals("2")){
                  if(sunflower>=300){
-                    System.out.print("posisi x (1 - 5): ");
+                    System.out.print("posisi row (1 - 5): ");
                     x = s.nextInt();
-                    System.out.print("posisi y (1 - 12): ");
+                    System.out.print("posisi column (1 - 12): ");
                     y = s.nextInt();
                     Plant p = new Repeater(x,y);
                     if(lawn1.cekAda(plantlist,p)){ // untuk memastikan tidak ada zombie di tempat sama
@@ -148,7 +148,7 @@ public class Main {
                 if(z.isDead()){
                     Box<Zombie> zombiebox = new Box<Zombie>();
                     zombiebox.add(z);
-                    zombiebox.print();
+                    zombiebox.print(); 
                 }
             }
         } else {
