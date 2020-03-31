@@ -39,12 +39,18 @@ public class Lawn { //[row][column]
 
     public <T extends Entity> boolean cekAda(List<T> entities, T entity){ // mengecek jika suatu entitas sudah ada di posisi yang sama di lawn
         boolean retval = false;
-        for (T temp: entities){
-            if ((entity.getX()==temp.getX())&&(entity.getY()==temp.getY())){
-                retval = true;
-            }  
+        if ((entity.getX()>5) || (entity.getX()<1) || (entity.getY()>12) || (entity.getY()<1)){
+            System.out.println("posisi tidak valid");
+            retval = true;
+        } else{
+            for (T temp: entities){
+                if ((entity.getX()==temp.getX())&&(entity.getY()==temp.getY())){
+                    System.out.println("sudah ada plant di situ");
+                    retval = true;
+                }  
+            } 
         }
-        return retval;   
+        return retval;  
     }
 
     public void cetak(){ //mencetak tampilan lawn

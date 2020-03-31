@@ -10,9 +10,11 @@ public class Ghoul extends Zombie {
     }
 
     public void move(){
-        turn ++;
-        if (turn % speed == 0){
-            this.y --;
+        if(!isDead()){
+            turn ++;
+            if (turn % speed == 0){
+                this.y --;
+            }
         }
     }
 }

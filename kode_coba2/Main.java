@@ -70,17 +70,12 @@ public class Main {
              cmd = s.next();
              if (cmd.equals("1")){
                  if(sunflower>=100){
-                    do {
-                    System.out.print("posisi x: ");
+                    System.out.print("posisi x (1 - 5): ");
                     x = s.nextInt();
-                    } while ((x<1)&&(x>5));
-                    do {
-                    System.out.print("posisi y: ");
+                    System.out.print("posisi y (1 - 12): ");
                     y = s.nextInt();
-                    } while ((x<1)&&(x>12));
                     Plant p = new Peashooter(x,y);
                     if(lawn1.cekAda(plantlist,p)){
-                        System.out.println("sudah ada plant di situ");
                         tunggu();
                     } else {
                         plantlist.add(p);
@@ -92,17 +87,12 @@ public class Main {
                  }
              } else if (cmd.equals("2")){
                  if(sunflower>=300){
-                    do {
-                    System.out.print("posisi x: ");
+                    System.out.print("posisi x (1 - 5): ");
                     x = s.nextInt();
-                    } while ((x<1)&&(x>5));
-                    do {
-                    System.out.print("posisi y: ");
+                    System.out.print("posisi y (1 - 12): ");
                     y = s.nextInt();
-                    } while ((x<1)&&(x>12));
                     Plant p = new Repeater(x,y);
                     if(lawn1.cekAda(plantlist,p)){ // untuk memastikan tidak ada zombie di tempat sama
-                        System.out.println("sudah ada plant di situ");
                         tunggu();
                     } else {
                         plantlist.add(p);
@@ -150,12 +140,7 @@ public class Main {
             lawn1.set(plantlist);
             lawn1.cetak();
             gameend = lawn1.cekMenang(zombielist);
-            //untuk menunjukkan nyawa zombie dan plant
-            // System.out.println(zombielist.get(0).getHealth());
-            // System.out.println(plantlist.get(0).getHealth());
-            //tunggu();
-        } while ((cmd.equals("SKIP")) && (gameend==0));
-        // (cmd.equals("SKIP")) && 
+        } while ((cmd.equals("SKIP")) && (gameend==0)); 
         System.out.println("game over");
         if(gameend==1){
             System.out.println("Zombie yang mati:");

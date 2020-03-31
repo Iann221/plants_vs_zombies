@@ -9,6 +9,8 @@ public class RegularZombie extends Zombie {
     }
 
     public void move(){
-        this.y --;
+        if(!isDead()){
+            this.y --;
+        }
     }
 }
