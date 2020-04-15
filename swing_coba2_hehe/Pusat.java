@@ -28,15 +28,22 @@ public class Pusat {
         //     labellist.add(jLabel1);
         // }
 
+
          Kondisi kon = new Kondisi();
          kon.setVisible(true);
+
+        // Jalan j = new Jalan();
+        // j.setVisible(true);
+
+
         //  PilihPea pc = new PilihPea();
         // pc.setVisible(true);
-         while(kon.getend() ==-1 || kon.getend() ==0){
-             if(kon.getend()==0){
-                 kon.change();
-             }
-         }
+
+        //  while(kon.getend() ==-1 || kon.getend() ==0){
+        //      if(kon.getend()==0){
+        //          kon.change();
+        //      }
+        //  }
 
         //  try {
         //      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

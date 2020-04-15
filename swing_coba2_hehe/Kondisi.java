@@ -276,48 +276,84 @@ public class Kondisi extends javax.swing.JFrame {
     }
 
     public void start(){
-        do {
-            for (Bullet b: bulletlist){
-                b.move();
-            }
-            for (Plant p: plantlist){
-                if (!p.isDead()){
-                    bulletlist.add(p.shoot());
+        // Thread worker = new Thread(){
+
+        //     public void run(){
+
+        //         for(int i=0; i<=10; i++) {
+
+        //          	jLabel43.setText(Integer.toString(i));
+
+        //          	try {
+
+        //         	 		Thread.sleep(1000);
+
+        //          	} catch (InterruptedException e) {
+
+
+        //          	}
+
+        //         }
+
+        //         jLabel1.setText("Completed.");
+
+        //   		System.out.println("Invoke and Wait...");
+
+        //     }
+
+     	// };
+ 	    // worker.start();
+
+        //kode asli
+
+        Thread worker = new Thread(){
+
+            public void run(){
+                do {
+                    for (Bullet b: bulletlist){
+                        b.move();
+                    }
+                    for (Plant p: plantlist){
+                        if (!p.isDead()){
+                            bulletlist.add(p.shoot());
+                        }
+                        if ((bulletlist.getLast().getX()==-1)&&(bulletlist.getLast().getX()==-1)){
+                            bulletlist.removeLast();
+                        }
+                    }
+                    lawn1.cekTingkahZombie(plantlist,zombielist);
+                    lawn1.cekKena(bulletlist,zombielist);
+                    lawn1.reset();
+                    lawn1.set(bulletlist);
+                    lawn1.set(zombielist);
+                    lawn1.set(plantlist);
+                    lawn1.cetak();
+                    change();
+                    gameend = lawn1.cekMenang(zombielist);
+                    tunggu();
+                } while (gameend==0);
+                if(gameend==1){
+                    System.out.println("Zombie yang mati:");
+                    for (Zombie z : zombielist){
+                        if(z.isDead()){
+                            Box<Zombie> zombiebox = new Box<Zombie>();
+                            zombiebox.add(z);
+                            zombiebox.print(); 
+                        }
+                    }
+                } else {
+                    System.out.println("Plant yang mati");
+                    for (Plant p : plantlist){
+                        if(p.isDead()){
+                            Box<Plant> plantbox = new Box<Plant>();
+                            plantbox.add(p);
+                            plantbox.print();
+                        }
+                    }
                 }
-                if ((bulletlist.getLast().getX()==-1)&&(bulletlist.getLast().getX()==-1)){
-                    bulletlist.removeLast();
-                }
             }
-            lawn1.cekTingkahZombie(plantlist,zombielist);
-            lawn1.cekKena(bulletlist,zombielist);
-            lawn1.reset();
-            lawn1.set(bulletlist);
-            lawn1.set(zombielist);
-            lawn1.set(plantlist);
-            lawn1.cetak();
-            change();
-            gameend = lawn1.cekMenang(zombielist);
-            tunggu();
-        } while (gameend==0);
-        if(gameend==1){
-            System.out.println("Zombie yang mati:");
-            for (Zombie z : zombielist){
-                if(z.isDead()){
-                    Box<Zombie> zombiebox = new Box<Zombie>();
-                    zombiebox.add(z);
-                    zombiebox.print(); 
-                }
-            }
-        } else {
-            System.out.println("Plant yang mati");
-            for (Plant p : plantlist){
-                if(p.isDead()){
-                    Box<Plant> plantbox = new Box<Plant>();
-                    plantbox.add(p);
-                    plantbox.print();
-                }
-            }
-        }
+        };
+        worker.start();
     }                 
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -368,7 +404,7 @@ public class Kondisi extends javax.swing.JFrame {
         //     lawn1.set(plantlist);
         //     change();
         //     lawn1.cetak();
-        gameend ++;
+        //gameend ++;
         start();
          
     }                                             

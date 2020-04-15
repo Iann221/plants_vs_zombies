@@ -76,7 +76,7 @@ public class Main {
                     y = s.nextInt();
                     Plant p = new Peashooter(x,y);
                     if(lawn1.cekAda(plantlist,p)){
-                        //System.out.println("sudah ada plant di situ");
+                        System.out.println("sudah ada plant di situ");
                         tunggu();
                     } else {
                         plantlist.add(p);
@@ -94,7 +94,7 @@ public class Main {
                     y = s.nextInt();
                     Plant p = new Repeater(x,y);
                     if(lawn1.cekAda(plantlist,p)){ // untuk memastikan tidak ada zombie di tempat sama
-                        //System.out.println("sudah ada plant di situ");
+                        System.out.println("sudah ada plant di situ");
                         tunggu();
                     } else {
                         plantlist.add(p);
@@ -118,15 +118,10 @@ public class Main {
          } while (!cmd.equals("START"));  
 
         do {
-            //mode skip
-            do {
-                System.out.print("ketik SKIP untuk melanjutkan: ");
-                cmd = s.next();
-                if (!cmd.equals("SKIP")){
-                    System.out.println("kode salah!");
-                }
-            }while(!cmd.equals("SKIP"));
-
+            // do {
+            //     System.out.print("ketik SKIP untuk melanjutkan: ");
+            //     cmd = s.next();
+            // }while(!cmd.equals("SKIP"));
             clearScreen();
             for (Bullet b: bulletlist){
                 b.move();
@@ -148,7 +143,7 @@ public class Main {
             lawn1.cetak();
             gameend = lawn1.cekMenang(zombielist);
             tunggu();
-        } while ((cmd.equals("SKIP")) && (gameend==0)); 
+        } while (gameend==0); 
         System.out.println("game over");
         if(gameend==1){
             System.out.println("Zombie yang mati:");
