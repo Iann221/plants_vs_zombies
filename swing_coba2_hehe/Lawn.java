@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.*;
 
 public class Lawn { //[row][column]
     protected int row = 6;
@@ -41,16 +42,20 @@ public class Lawn { //[row][column]
         }   
     }
 
-    public <T extends Entity> boolean cekAda(List<T> entities, T entity){ // mengecek jika suatu entitas sudah ada di posisi yang sama di lawn
+    public <T extends Entity> boolean cekAda(List<T> entities, T entity) throws AdaException{ // mengecek jika suatu entitas sudah ada di posisi yang sama di lawn
         boolean retval = false;
         if ((entity.getX()>5) || (entity.getX()<1) || (entity.getY()>12) || (entity.getY()<1)){
-            System.out.println("posisi salah");
+            if (entity.getSymbol() == 'P' || entity.getSymbol() == 'R') {
+                        throw new AdaException();
+                        //JOptionPane.showMessageDialog(null, "Posisi salah!");
+                    }
             retval = true;
         } else{
             for (T temp: entities){
-                if ((entity.getX()==temp.getX())&&(entity.getY()==temp.getY())){
-                    if (entity.getSymbol() == 'P' || entity.getSymbol() == 'R'){
-                        System.out.println("sudah ada plant di situ");
+                if ((entity.getX()==temp.getX())&&(entity.getY()==temp.getY()) && (!temp.isDead())){
+                    if ((entity.getSymbol() == 'P' || entity.getSymbol() == 'R')){
+                        throw new AdaException();
+                        //JOptionPane.showMessageDialog(null, "Sudah ada plant di situ!");
                     }
                     retval = true;
                 }  
@@ -115,10 +120,10 @@ public class Lawn { //[row][column]
             }
         }
         if (plantmenang){
-            System.out.println("Selamat anda berhasil menahan para zombie");
+            JOptionPane.showMessageDialog(null, "Selamat, anda berhasil menahan para zombie!");
             return 1;
         } else if (zombiemenang){
-            System.out.println("Zombie sudah masuk rumah");
+            JOptionPane.showMessageDialog(null, "Zombie sudah masuk rumah!");
             return 2;
         } else {
             return 0;

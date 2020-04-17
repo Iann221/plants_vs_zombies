@@ -9,12 +9,12 @@ import javax.swing.JOptionPane;
  *
  * @author Vincentius ian 18218034
  */
-public class PilihPea extends javax.swing.JFrame {
-    
+public class PilihRep extends javax.swing.JFrame {
+
     /**
      * Creates new form 
      */
-    public PilihPea() {
+    public PilihRep() {
         initComponents();
     }
 
@@ -98,15 +98,15 @@ public class PilihPea extends javax.swing.JFrame {
         );
 
         pack();
-    }
+    } 
 
     public void buatPlant(int row, int column) throws PosisiException{
         if ((row==0) || (column==0)){
             throw new PosisiException();
         } else {
-            p = new Peashooter(row,column);
+            p = new Repeater(row,column);
         }
-    }                        
+    }  
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {    
         try {
@@ -128,7 +128,7 @@ public class PilihPea extends javax.swing.JFrame {
     }                                          
 
     public Plant getplant(){
-        return p;
+            return p;
     }
 
     public boolean getchosen(){
