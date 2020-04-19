@@ -112,14 +112,14 @@ public class Kondisi extends javax.swing.JFrame {
 
         jLabelsun.setText("Sunflower sekarang: " + sunflower);
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\peashootercard.jpg")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(cardpea)); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt)  {
                 jButton1ActionPerformed(evt) ;
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\repeatercard.jpg")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(cardrep)); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -199,22 +199,22 @@ public class Kondisi extends javax.swing.JFrame {
             e = petak[y][x];
             switch(e){
                 case 'P':
-                    label.setIcon(new javax.swing.ImageIcon("C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\peashooter.jpg"));
+                    label.setIcon(new javax.swing.ImageIcon(gbrpeashooter));
                     break;
                 case 'Z':
-                    label.setIcon(new javax.swing.ImageIcon("C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\zombie.jpg"));
+                    label.setIcon(new javax.swing.ImageIcon(gbrzombie));
                     break;
                 case 'R':
-                    label.setIcon(new javax.swing.ImageIcon("C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\repeater.jpg"));
+                    label.setIcon(new javax.swing.ImageIcon(gbrrepeater));
                     break;
                 case 'G':
-                    label.setIcon(new javax.swing.ImageIcon("C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\ghoul.jpg"));
+                    label.setIcon(new javax.swing.ImageIcon(gbrghoul));
                     break;
                 case '-':
-                    label.setIcon(new javax.swing.ImageIcon("C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\pea.jpg"));
+                    label.setIcon(new javax.swing.ImageIcon(gbrpea));
                     break;
                 default:
-                    label.setIcon(new javax.swing.ImageIcon("C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\lawn.jpg"));
+                    label.setIcon(new javax.swing.ImageIcon(gbrlawn));
                     break;
             }
              gridBagConstraints.gridx = x;
@@ -241,58 +241,56 @@ public class Kondisi extends javax.swing.JFrame {
             e = petak[y][x];
             switch(e){
                 case 'P':
-                    label.setIcon(new javax.swing.ImageIcon("C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\peashooter.jpg"));
+                    label.setIcon(new javax.swing.ImageIcon(gbrpeashooter));
                     break;
                 case 'Z':
-                    label.setIcon(new javax.swing.ImageIcon("C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\zombie.jpg"));
+                    label.setIcon(new javax.swing.ImageIcon(gbrzombie));
                     break;
                 case 'R':
-                    label.setIcon(new javax.swing.ImageIcon("C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\repeater.jpg"));
+                    label.setIcon(new javax.swing.ImageIcon(gbrrepeater));
                     break;
                 case 'G':
-                    label.setIcon(new javax.swing.ImageIcon("C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\ghoul.jpg"));
+                    label.setIcon(new javax.swing.ImageIcon(gbrghoul));
                     break;
                 case '-':
-                    label.setIcon(new javax.swing.ImageIcon("C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\pea.jpg"));
+                    label.setIcon(new javax.swing.ImageIcon(gbrpea));
                     break;
                 default:
-                    label.setIcon(new javax.swing.ImageIcon("C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\lawn.jpg"));
+                    label.setIcon(new javax.swing.ImageIcon(gbrlawn));
                     break;
             }
             x++;
         }
     }
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        
-            if(sunflower>=100){
-                Thread pilihpea = new Thread(){
-                    public void run(){
-                        PilihPea p1 = new PilihPea();
-                        p1.setVisible(true);
-                        while(!p1.getchosen()){
-                            tunggu();
-                        }
-                        p = p1.getplant();
-                        try{
-                            if(lawn1.cekAda(plantlist,p)){
-                                tunggu();
-                            } else {
-                                plantlist.add(p);
-                                sunflower -= 100;
-                                lawn1.set(plantlist);
-                                change();
-                            }
-                        }catch (AdaException e){
-                            e.pesan();
-                        }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        if(sunflower>=100){
+            Thread pilihpea = new Thread(){
+                public void run(){
+                    PilihPea p1 = new PilihPea();
+                    p1.setVisible(true);
+                    while(!p1.getchosen()){
+                        tunggu();
                     }
-                };
-                pilihpea.start();
-            } else {
-                JOptionPane.showMessageDialog(this, "sunflower tidak cukup!");
-            }
-        
+                    p = p1.getplant();
+                    try{
+                        if(lawn1.cekAda(plantlist,p)){
+                            tunggu();
+                        } else {
+                            plantlist.add(p);
+                            sunflower -= 100;
+                            lawn1.set(plantlist);
+                            change();
+                        }
+                    }catch (AdaException e){
+                        e.pesan();
+                    }
+                }
+            };
+            pilihpea.start();
+        } else {
+            JOptionPane.showMessageDialog(this, "sunflower tidak cukup!");
+        }    
     }  
 
      private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -441,5 +439,15 @@ public class Kondisi extends javax.swing.JFrame {
     int jmlghoul;
     Plant p;
     Zombie z;
-    PilihPea pc;                 
+    PilihPea pc;
+
+    //gambar
+    String cardpea = "C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\peashootercard.jpg";
+    String cardrep = "C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\repeatercard.jpg";
+    String gbrpeashooter = "C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\peashooter.jpg"; 
+    String gbrrepeater = "C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\repeater.jpg";
+    String gbrzombie = "C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\zombie.jpg";
+    String gbrghoul = "C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\ghoul.jpg";
+    String gbrpea = "C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\pea.jpg";
+    String gbrlawn = "C:\\Users\\seana\\OneDrive\\Desktop\\codes\\plants_vs_zombies\\swing\\gambar\\lawn.jpg";       
 }
